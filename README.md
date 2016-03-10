@@ -9,6 +9,7 @@ into your application using ColdFusion. There is a lot more you can do with the
 Custom Tag and form page to enhance the features.
 
 ::::IMPORTANT:::: 
+
 You will need to get a secretKey and Site Key from Google located here: 
 https://www.google.com/recaptcha/admin
 
@@ -21,27 +22,5 @@ keys as attributes of the tag when making the call from the form, rather than
 setting the default values in the actual tag below. Furthermore, if each site
 has its' own application file, you can set application variables for each key
 and use those as the default values.
+
 ::::IMPORTANT:::: 
-
-
- - Page example using the Custom Tag -
-
- 	<html>
-		<body>
-			<!--- Processing code after form submission --->
-			<cfif structKeyExists(form,"submit")>
-				<cf_recaptcha action="process">
-				<cfif form.captcha>
-					success!!!
-				<cfelse>
-					failure!!!
-				</cfif>
-			</cfif>
-
-			<!--- Form to display --->
-			<form method="post">
-				<cf_recaptcha>
-				<input type="submit" name="submit" value="submit">
-			</form>
-		</body>
-	</html>
