@@ -13,6 +13,7 @@
 
 <!--- This section is used to process the captcha after the form has been submitted. --->
 <cfelseif attributes.action eq "process">
+	<cfset form.captcha = 0 />
 	<cftry>
 		<cfif structkeyExists(form,'g-recaptcha-response')>
 			<cfhttp url="https://www.google.com/recaptcha/api/siteverify" method="get" timeout="5" throwonerror="true">
@@ -25,13 +26,10 @@
 			<!--- You can change these variables to whatever you want them to be for your processing code. --->
 			<cfif result.success eq "YES">
 				<cfset form.captcha = 1 />
-			<cfelse>
-				<cfset form.captcha = 0 />
 			</cfif>
 		</cfif>
 		<!--- You can use this for any other error information you want to capture. --->
 		<cfcatch>
-			<cfset form.captcha = 0 />
 		</cfcatch>
 	</cftry>
 </cfif>
